@@ -1,6 +1,39 @@
 # GRAFANA CENTRIC DEMO 
 
-## Install Docker
+[MS05 Grafana Team centric dashboard page design](https://tools.hmcts.net/jira/browse/DTSSE-3660) 
+
+We currently have dashboards for high and medium levels of detail but currently lack a low level view of teams performance.
+We need to design and prototype the type of information we think we should be displaying and how.
+
+
+## Requirements
+
+The requirements
+
+   * [Homebrew](https://brew.sh/)
+   * [Groovy](https://groovy-lang.org/) V4.0 or better
+   * [Docker](https://www.docker.com/products/docker-desktop/) V23 or better 
+   * [MySQL Community Download](https://dev.mysql.com/downloads/mysql/) V8.1 or better
+
+### Homebreww
+
+Get Homebrew for Mac OS X
+
+### Groovy
+
+In order to install Groovy, you can download it from the official site [Groovy](https://groovy-lang.org/). 
+You then unpack the distribution and install it in a location of your choice on your machine.
+
+Or you can use something like [SDK Manager](https://sdkman.io/) and you can execute a command like this:
+
+```zsh
+sdk install groovy
+```
+
+See also https://sdkman.io/sdks#groovy for more information.
+
+
+### Install Docker
 
 We need a local installation of Docker database server.
 
@@ -10,7 +43,7 @@ Use [Homebrew](https://formulae.brew.sh/formula/docker) to install Docker on you
  brew install docker 
 ```
 
-## Install MySQL 
+### Install MySQL 
 
 We need a local installation of MySQL database server.
 Use [Homebrew](https://brew.sh) to install MYSQL on your MacBook Pro
@@ -108,6 +141,19 @@ This project borrows the official [Grafana Getting Started Tutorial](https://gra
 Follow the instructions to  create your local Docker installation with Grafana, Prometheus, etc
 
 You can find the Tutorial in the [sub directory](tutorial-environment)
+
+Once up get Docker up and running, you should be able to see the processes something like this:
+
+```zsh
+docker ps
+CONTAINER ID   IMAGE                      COMMAND                  CREATED       STATUS       PORTS                    NAMES
+37c72f8bf0c2   grafana/promtail:2.0.0     "/usr/bin/promtail -…"   2 weeks ago   Up 2 weeks                            tutorial-environment-promtail-1
+3a1758a7943f   prom/prometheus:v2.34.0    "/bin/prometheus --c…"   2 weeks ago   Up 2 weeks   0.0.0.0:9090->9090/tcp   tutorial-environment-prometheus-1
+ee561a4bbda4   tutorial-environment-app   "/bin/sh -c '/app ht…"   2 weeks ago   Up 2 weeks   0.0.0.0:8081->80/tcp     tutorial-environment-app-1
+d4601e9ed01c   grafana/grafana:10.0.0     "/run.sh"                2 weeks ago   Up 2 weeks   0.0.0.0:3000->3000/tcp   tutorial-environment-grafana-1
+60af0c8a0570   grafana/tns-db:latest      "/db"                    2 weeks ago   Up 2 weeks   0.0.0.0:8082->80/tcp     tutorial-environment-db-1
+888ab21c1f26   grafana/loki:2.4.2         "/usr/bin/loki -conf…"   2 weeks ago   Up 2 weeks   0.0.0.0:3100->3100/tcp   tutorial-environment-loki-1
+```
 
 
 ## Other stuff
