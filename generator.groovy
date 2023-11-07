@@ -1,3 +1,4 @@
+import java.time.DayOfWeek
 import java.time.LocalDate
 import java.util.*;
 
@@ -12,9 +13,17 @@ use centric;
 
 """)
 
-def teams=100..138
+def teams= 100..138
 
-def endTime = LocalDate.of(2023, 10, 16)
+def endTime = LocalDate.now().plusDays(60)
+
+// We assume that the end of Sprint / Cadence is on Wednesdays for all teams!!!
+while ( endTime.getDayOfWeek() != DayOfWeek.WEDNESDAY) {
+    //    println("\tendTime = ${endTime}  ${endTime.getDayOfWeek()}")
+    endTime = endTime.plusDays(1);
+}
+//println("*FINAL* endTime = ${endTime}  ${endTime.getDayOfWeek()}"); System.exit(1)
+
 
 println("""
 delete from change_failure_rate;
@@ -150,18 +159,18 @@ for (team in teams) {
     int reposWithoutRenovate = 7 + Math.random() * 16;
     int codeSmellsPerRepository = 50 + Math.random() * 250;
     double coverage = 45.0 + Math.random() * 45.0;
-    double complexity = 50 + Math.random() * 45.0;
+    double complexity = 60 + Math.random() * 35.0;
     int deprecatedHelmCharts = 10 + Math.random() * 50;
 
     while ( recTime.isBefore(endTime)) {
         if ( Math.random() < 0.333) {
             if (Math.random() > 0.5 ) {
-                reposWithoutRenovate += (1 + Math.random() * 4 )
+                reposWithoutRenovate += (1 + Math.random() * 4.567 )
                 if ( reposWithoutRenovate > 23)
                     reposWithoutRenovate = 23
             }
             else {
-                reposWithoutRenovate -= (1 + Math.random() * 4 )
+                reposWithoutRenovate -= (1 + Math.random() * 3.123 )
                 if ( reposWithoutRenovate < 0)
                     reposWithoutRenovate = 0
             }

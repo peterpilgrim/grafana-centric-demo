@@ -118,9 +118,15 @@ This script generates data for the four key metrics.
 
 Afterwards, run the Groovy script `combinator.groovy`
 
+
 ```zsh
-groovy  combinator.groovy
+groovy  -cp ~/lib/mysql-connector-j-8.1.0.jar  combinator.groovy 
 ```
+
+Note: In order to execute this script, you need to also download the 
+[MySQL Connector Java](https://dev.mysql.com/downloads/connector/j/), 
+which is the JDBC driver for MySQL 8.1.0 or better.
+
 
 The Combinator script creates the aggregated view in a DB table `combined_state`. 
 It gets around the limitation that Grafana does not LOOP around template variables.
@@ -168,5 +174,25 @@ So inside Docker, your MySQL connection is:
 
 
 
+### Grafana Hints and Tips
+
+Setting the absolute time range, configure the `To` to 'now' 
+and in the `From` use an expression:
+
+| Expression | Meaning             |
+|------------|---------------------|
+| `now-3d`   | the last three days |
+| `now-7d`   | the last week       |
+| `now-10d`  | the last 10 days    |
+| `now-14d`  | the last fortnight  |
+| `now-1M`   | the last month      |
+| `now-2M`   | the last two months |
+| `now-3M`   | the last 3 months   |
+| `now-6M`   | the last 6 months   |
+| `now-1y`   | the last year       |
+
+
+
 Peter Pilgrim
+
 October/November 2023
