@@ -40,6 +40,86 @@
         "type": "mysql",
         "uid": "c9fe0919-a7f2-4220-bc2d-f70012ef36fd"
       },
+      "fieldConfig": {
+        "defaults": {
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          },
+          "unit": "short"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 12,
+        "x": 0,
+        "y": 0
+      },
+      "id": 7,
+      "options": {
+        "colorMode": "value",
+        "graphMode": "area",
+        "justifyMode": "auto",
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "textMode": "auto"
+      },
+      "pluginVersion": "10.0.0",
+      "targets": [
+        {
+          "datasource": {
+            "type": "mysql",
+            "uid": "c9fe0919-a7f2-4220-bc2d-f70012ef36fd"
+          },
+          "editorMode": "code",
+          "format": "table",
+          "rawQuery": true,
+          "rawSql": "select rec_date, repos_without_renovate from centric.perspectives where team_id = 103;",
+          "refId": "A",
+          "sql": {
+            "columns": [
+              {
+                "parameters": [],
+                "type": "function"
+              }
+            ],
+            "groupBy": [
+              {
+                "property": {
+                  "type": "string"
+                },
+                "type": "groupBy"
+              }
+            ],
+            "limit": 50
+          }
+        }
+      ],
+      "title": "Trend Repos without Renovate",
+      "type": "stat"
+    },
+    {
+      "datasource": {
+        "type": "mysql",
+        "uid": "c9fe0919-a7f2-4220-bc2d-f70012ef36fd"
+      },
       "description": "Latest recorded values",
       "fieldConfig": {
         "defaults": {
@@ -74,7 +154,7 @@
         "h": 8,
         "w": 16,
         "x": 0,
-        "y": 0
+        "y": 8
       },
       "id": 6,
       "options": {
@@ -87,7 +167,8 @@
           ],
           "show": false
         },
-        "showHeader": true
+        "showHeader": true,
+        "sortBy": []
       },
       "pluginVersion": "10.0.0",
       "targets": [
@@ -99,7 +180,7 @@
           "editorMode": "code",
           "format": "table",
           "rawQuery": true,
-          "rawSql": "select e.name as \"Engineering Team\", \ncs.delivery_lead_time as \"Delivery Lead Time (hrs)\", \ncs.change_lead_rate as \"Change Lead Time (mins)\", \ncs.change_failure as \"Change Failure Rate (%)\", \ncs.mttr as \"Mean Time To Recovery (hrs)\"\nfrom centric.combined_state cs, centric.engineering e \nwhere team_id IN (${team:raw} ) and cs.team_id = e.id \norder by e.name",
+          "rawSql": "select e.name as \"Engineering Team\", \ncs.delivery_lead_time as \"Delivery Lead Time (hrs)\", \ncs.change_lead_rate as \"Change Lead Time (mins)\", \ncs.change_failure as \"Change Failure Rate (%)\", \ncs.mttr as \"Mean Time To Recovery (hrs)\"\nfrom centric.combined_state cs, centric.engineering e \nwhere team_id IN (${team:raw} ) and cs.team_id = e.id \norder by e.name asc",
           "refId": "A",
           "sql": {
             "columns": [
@@ -184,7 +265,7 @@
         "h": 12,
         "w": 16,
         "x": 0,
-        "y": 8
+        "y": 16
       },
       "id": 1,
       "options": {
@@ -293,8 +374,7 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green",
-                "value": null
+                "color": "green"
               },
               {
                 "color": "red",
@@ -309,7 +389,7 @@
         "h": 10,
         "w": 16,
         "x": 0,
-        "y": 20
+        "y": 28
       },
       "id": 2,
       "options": {
@@ -419,8 +499,7 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green",
-                "value": null
+                "color": "green"
               },
               {
                 "color": "red",
@@ -435,7 +514,7 @@
         "h": 10,
         "w": 16,
         "x": 0,
-        "y": 30
+        "y": 38
       },
       "id": 3,
       "options": {
@@ -545,8 +624,7 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green",
-                "value": null
+                "color": "green"
               },
               {
                 "color": "red",
@@ -561,7 +639,7 @@
         "h": 10,
         "w": 16,
         "x": 0,
-        "y": 40
+        "y": 48
       },
       "id": 4,
       "options": {
@@ -648,8 +726,7 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green",
-                "value": null
+                "color": "green"
               },
               {
                 "color": "red",
@@ -664,7 +741,7 @@
         "h": 7,
         "w": 12,
         "x": 1,
-        "y": 50
+        "y": 58
       },
       "id": 5,
       "options": {
@@ -814,7 +891,7 @@
       "type": "table"
     }
   ],
-  "refresh": false,
+  "refresh": "",
   "schemaVersion": 38,
   "style": "dark",
   "tags": [],
@@ -825,17 +902,11 @@
           "selected": true,
           "text": [
             "Bulk Scan",
-            "Civil Damages",
-            "CMC",
-            "Employment Tribunals",
-            "ETHOS"
+            "CMC"
           ],
           "value": [
             "102",
-            "103",
-            "105",
-            "108",
-            "110"
+            "105"
           ]
         },
         "datasource": {
@@ -866,6 +937,6 @@
   "timezone": "",
   "title": "Centric",
   "uid": "bb86bcc2-de7f-41aa-982c-379d56952108",
-  "version": 31,
+  "version": 35,
   "weekStart": ""
 }
