@@ -541,9 +541,9 @@
     "list": [
       {
         "current": {
-          "selected": true,
-          "text": "103",
-          "value": "103"
+          "selected": false,
+          "text": "102",
+          "value": "102"
         },
         "description": "130",
         "hide": 0,
@@ -566,13 +566,13 @@
     ]
   },
   "time": {
-    "from": "2019-01-01T00:00:00.000Z",
+    "from": "now-6M",
     "to": "now"
   },
   "timepicker": {},
   "timezone": "",
   "title": "FIXED PERSPECTIVE",
   "uid": "d3e3d639-41bc-4ac7-a001-adf9888449aa",
-  "version": 17,
+  "version": 19,
   "weekStart": ""
 }

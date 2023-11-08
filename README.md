@@ -70,7 +70,7 @@ You should be able to login to MySQL in a terminal window.
 mysql -u root
 ```
 
-There is no password set up. For your security, you should set a "root" password. 
+There is no password set up. For your own security, I recommend strongly setting a "root" password. 
 
 
 ## Create Centric Database
@@ -167,10 +167,10 @@ d4601e9ed01c   grafana/grafana:10.0.0     "/run.sh"                2 weeks ago  
 In order to configure Docker Grafana to see the MySQL database outside the server use the special domain "host.docker.internal"
 So inside Docker, your MySQL connection is:
 
-   hostname:  host.docker.internal
-   username:  root
-   password:  <>
-   database:  centric
+      hostname:  host.docker.internal
+      username:  root
+      password:  <>
+      database:  centric
 
 
 
