@@ -1,4 +1,4 @@
-FROM alpine:3.16.9
+FROM alpine:3.19
 ADD app /
 ADD index.html.tmpl /
 EXPOSE 80
