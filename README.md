@@ -6,6 +6,21 @@ We currently have dashboards for high and medium levels of detail but currently 
 We need to design and prototype the type of information we think we should be displaying and how.
 
 
+## Grafana Login
+
+
+Initalise logon to Grafana
+
+
+http://localhost:3000/login
+
+Username: admin
+Password: admin
+
+
+Change the admin to something else
+
+
 ## Requirements
 
 The requirements
