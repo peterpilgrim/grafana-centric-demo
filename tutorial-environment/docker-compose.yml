@@ -8,7 +8,7 @@ volumes:
 
 services:
   prometheus:
-    image: prom/prometheus:v3.2.1
+    image: prom/prometheus:v2.49.0
     volumes:
       - ./prometheus/:/etc/prometheus/
     command:
@@ -20,7 +20,7 @@ services:
       - grafana
 
   loki:
-    image: grafana/loki:3.4.2
+    image: grafana/loki:2.9.0
     ports:
       - 3100:3100
     command: -config.file=/etc/loki/local-config.yaml
@@ -28,14 +28,14 @@ services:
       - grafana
 
   promtail:
-    image: grafana/promtail:3.4.2
+    image: grafana/promtail:2.0.0
     volumes:
       - app_data:/var/log
     networks:
       - grafana
 
   grafana:
-    image: grafana/grafana:11.3.4
+    image: grafana/grafana:12.0.1
     ports:
       - 3000:3000
     networks:
@@ -43,6 +43,11 @@ services:
     environment:
       - "GF_DEFAULT_APP_MODE=development"
       - "GF_LOG_LEVEL=debug"
+      - GF_AUTH_ANONYMOUS_ORG_ROLE=Admin # grants admin role to anonymous access
+      - GF_AUTH_ANONYMOUS_ENABLED=true # removes login 1/2
+      - GF_AUTH_BASIC_ENABLED=false # removes login 2/2
+    volumes:
+      - ./grafana/provisioning/datasources:/etc/grafana/provisioning/datasources
 
   app:
     build: ./app
